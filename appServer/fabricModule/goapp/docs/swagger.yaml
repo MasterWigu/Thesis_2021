@@ -1,0 +1,80 @@
+basePath: /
+definitions:
+  APIs.AssetTypesResp:
+    properties:
+      asset_types:
+        items:
+          type: string
+        type: array
+    type: object
+  APIs.LoginResp:
+    properties:
+      perms:
+        type: string
+      sess_id:
+        type: string
+      username:
+        type: string
+    type: object
+host: fabric-module1:8090
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server fasda server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fabric Module API
+  version: "1.0"
+paths:
+  /assets/types:
+    get:
+      consumes:
+      - '*/*'
+      description: Makes a request to the ledger to get the existing asset types.
+        Needs session id set as cookie
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/APIs.AssetTypesResp'
+      summary: Gets the existing asset types
+      tags:
+      - root
+    post:
+      consumes:
+      - '*/*'
+      description: Makes a request to the ledger to add a new asset type. Needs session
+        id set as cookie
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/APIs.AssetTypesResp'
+      summary: Adds a new asset type to the ledger
+      tags:
+      - root
+  /loginUser:
+    get:
+      consumes:
+      - '*/*'
+      description: Makes the login of the user, generates a session and returns a
+        session ID via a cookie and on the body of the response.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/APIs.LoginResp'
+      summary: Login a new user and receive a session ID
+      tags:
+      - root
+swagger: "2.0"

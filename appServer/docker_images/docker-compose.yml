@@ -1,0 +1,89 @@
+#
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+version: "3.4"
+
+
+services:
+   fabric-module:
+      image: golang:latest
+      container_name: fabric-module
+      networks:
+         modules-net:
+            aliases:
+               - fabric-module
+            ipv4_address: 10.10.202.10
+      ports:
+        - "8090:8090"
+      extra_hosts:
+        - "tls-ca:10.10.200.5"
+        - "org0-ca:10.10.200.10"
+        - "org1-ca:10.10.200.11"
+        - "peer1-org1:10.10.200.15"
+        - "peer2-org1:10.10.200.16"
+        - "orderer1-org0:10.10.200.20"
+        - "orderer2-org0:10.10.200.21"
+        - "orderer3-org0:10.10.200.22"
+        - "fabric-module:10.10.202.10"
+        - "broker-module:10.10.202.20"
+        - "ansible-module:10.10.202.40"
+        - "terraform-module:10.10.202.50"
+      volumes:
+        - "/home/vagrant/appServer/fabricModule:/fabricModule"
+        - "/home/vagrant/certshare/fabric-module/:/certs"
+      command: sh -c '/fabricModule/goapp/fabric'
+
+   broker-module:
+      image: golang:latest
+      container_name: broker-module
+      networks:
+         modules-net:
+            aliases:
+               - broker-module
+            ipv4_address: 10.10.202.20
+      ports:
+        - "8080:8080"
+      extra_hosts:
+        - "fabric-module:10.10.202.10"
+        - "broker-module:10.10.202.20"
+        - "ansible-module:10.10.202.40"
+        - "terraform-module:10.10.202.50"
+      volumes:
+        - "/home/vagrant/appServer/brokerModule:/brokerModule"
+        - "/home/vagrant/certshare/broker-module/:/certs"
+      command: sh -c '/brokerModule/goapp/broker'
+
+
+   ansible-module:
+      build: ansibleModule/.
+      container_name: ansible-module
+      networks:
+         modules-net:
+            aliases:
+               - ansible-module
+            ipv4_address: 10.10.202.40
+      ports:
+        - "8080:8080"
+      extra_hosts:
+        - "fabric-module:10.10.202.10"
+        - "broker-module:10.10.202.20"
+        - "ansible-module:10.10.202.40"
+        - "terraform-module:10.10.202.50"
+      volumes:
+        - "/home/vagrant/appServer/ansibleModule:/ansibleModule"
+        - "/home/vagrant/certshare/ansible-module/:/certs"
+      command: sh -c '/ansibleModule/goapp/ansible'
+
+
+networks:
+   modules-net:
+      name: modules-net
+      ipam:
+         driver: default
+         config:
+            - subnet: "10.10.202.0/24"
+
+
+

@@ -1,52 +1,22 @@
-# Prerequisites
-*.d
+.vagrant/
+tempFiles/
+.idea/
+wallet/
+msp/
+vendor/
+packaged/
+git_configs/
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+shared/caserver/org0-ca-server/admin/
+shared/caserver/org0-ca-server/crypto/
+shared/caserver/org1-ca-server/admin/
+shared/caserver/org1-ca-server/crypto/
+shared/caserver/tls-ca-server/admin/
+shared/caserver/tls-ca-server/crypto/
 
-# Linker output
-*.ilk
-*.map
-*.exp
 
-# Precompiled Headers
-*.gch
-*.pch
+shared/nodesserver/org0/
+shared/nodesserver/org1/
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+*.pem

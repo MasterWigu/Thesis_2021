@@ -1,0 +1,14 @@
+module github.com/MasterWigu/Thesis/chaincode/inventory-management
+
+go 1.14
+
+require (
+	github.com/MasterWigu/Thesis v0.0.0-20210610163134-2cadaa52274d
+	github.com/golang/protobuf v1.3.2 // indirect
+	github.com/hyperledger/fabric-chaincode-go v0.0.0-20200424173110-d7076418f212 // indirect
+	github.com/hyperledger/fabric-contract-api-go v1.1.0
+	github.com/hyperledger/fabric-protos-go v0.0.0-20200424173316-dd554ba3746e // indirect
+	github.com/hyperledger/fabric-samples/asset-transfer-basic/chaincode-go v0.0.0-20210430115730-6ebf692ab8a9 // indirect
+	github.com/stretchr/testify v1.5.1 // indirect
+	golang.org/x/tools v0.1.0 // indirect
+)

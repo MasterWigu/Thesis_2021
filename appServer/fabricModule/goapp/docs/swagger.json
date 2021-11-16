@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server fasda server.",
+        "title": "Fabric Module API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "fabric-module1:8090",
+    "basePath": "/",
+    "paths": {
+        "/assets/types": {
+            "get": {
+                "description": "Makes a request to the ledger to get the existing asset types. Needs session id set as cookie",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Gets the existing asset types",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/APIs.AssetTypesResp"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Makes a request to the ledger to add a new asset type. Needs session id set as cookie",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Adds a new asset type to the ledger",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/APIs.AssetTypesResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/loginUser": {
+            "get": {
+                "description": "Makes the login of the user, generates a session and returns a session ID via a cookie and on the body of the response.",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Login a new user and receive a session ID",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/APIs.LoginResp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "APIs.AssetTypesResp": {
+            "type": "object",
+            "properties": {
+                "asset_types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "APIs.LoginResp": {
+            "type": "object",
+            "properties": {
+                "perms": {
+                    "type": "string"
+                },
+                "sess_id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+---
+name: MOThesisNet-Org1
+version: 1.0.0
+client:
+  organization: org1
+
+channels:
+  channel1:
+    orderers:
+      - orderer1-org0
+      - orderer2-org0
+      - orderer3-org0
+    peers:
+      peer1-org1:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+      peer2-org1:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+organizations:
+  org1:
+    mspid: org1MSP
+    peers:
+      - peer1-org1
+      - peer2-org1
+    certificateAuthorities:
+      - org1-ca
+  org0:
+    mspid: org0MSP
+    certificateAuthorities:
+      - org0-ca
+orderers:
+  orderer1-org0:
+    url: grpcs://orderer1-org0:7050
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+  orderer2-org0:
+    url: grpcs://orderer2-org0:7050
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+  orderer3-org0:
+    url: grpcs://orderer3-org0:7050
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+
+peers:
+  peer1-org1:
+    url: grpcs://peer1-org1:7051
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+  peer2-org1:
+    url: grpcs://peer2-org1:7051
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+certificateAuthorities:
+  org0-ca:
+    url: https://org0-ca:7054
+    caName: org1-ca
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+    httpOptions:
+      verify: false
+  org1-ca:
+    url: https://org1-ca:7054
+    caName: org1-ca
+    tlsCACerts:
+      path: /certs/tls-cacert.pem
+
+    httpOptions:
+      verify: false
